@@ -15,7 +15,7 @@ using namespace std;
 struct artis{
     int no_id;
     string nama;
-    int cp;
+    string cp;
     string gender;
     string pekerjaan;
     string medsos;

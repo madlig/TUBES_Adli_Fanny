@@ -27,7 +27,7 @@ void insertFirst_artis(List_artis &L, address_artis P){
     }
     else{
         next(P)=first(L);
-        first(L)->prev=P;
+        prev(first(L))=P;
         first(L)=P;
     }
 }
@@ -36,7 +36,7 @@ void insertLast_artis(List_artis &L, address_artis P){
         insertFirst_artis(L,P);
     }
     else{
-        last(L)->next=P;
+        next(last(L))=P;
         prev(P)=last(L);
         last(L)=P;
     }
@@ -64,13 +64,13 @@ void deleteFirst_artis(List_artis &L, address_artis P){
     else if(first(L)==last(L)){
         P=first(L);
         first(L)=next(P);
-        first(L)->prev=NULL;
+        prev(first(L))=NULL;
         next(P)=NULL;
     }
     else{
         P=first(L);
         first(L)=next(P);
-        first(L)->prev=NULL;
+        prev(first(L))=NULL;
         next(P)=NULL;
     }
 }
@@ -82,13 +82,13 @@ void deleteLast_artis(List_artis &L, address_artis P){
     else if(first(L)==last(L)){
         P=first(L);
         first(L)=next(P);
-        first(L)->prev=NULL;
+        prev(first(L))=NULL;
         next(P)=NULL;
     }
     else{
         P=first(L);
         last(L)=prev(P);
-        last(L)->next=NULL;
+        next(last(L))=NULL;
         next(P)=NULL;
     }
 }
@@ -109,12 +109,21 @@ void deleteAfter_artis(List_artis &L, address_artis Prec, address_artis P){
 }
 
 address_artis findElm_artis(List_artis L,infotype_artis x){
+    address_artis A = first(L);
+    while(A != NULL) {
+          if(x.no_id == info(A).no_id){
+            return A;
+          }
+        A = next(A);
+    }
+
+    return A;
 }
 
 void printInfo_artis(List_artis L){
     address_artis P = first(L);
     while(P != NULL){
-        cout<<info(P).nama<<" "<<info(P).no_id;
+        cout<<info(P).no_id<<" "<<info(P).nama;cout<<" "<<endl;
         P = next(P);
     }
 }

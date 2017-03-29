@@ -31,13 +31,12 @@ void insertLast_fans(List_fans &L2, address_fans C) {
     }
 }
 address_fans findElm_fans(List_fans L2, infotype_fans x) {
-    address_fans C;
-
-    while(C!=NULL) {
-          if(x.no_id==info(C).no_id){
+    address_fans C = first(L2);
+    while(C != NULL) {
+          if(x.no_id == info(C).no_id){
             return C;
           }
-        C=next(C);
+        C = next(C);
     }
 
     return C;
@@ -67,7 +66,7 @@ void deleteLast_fans(List_fans &L2, address_fans &C) {
 void printInfo_fans(List_fans L2) {
     address_fans C = first(L2);
     while(C!=NULL) {
-        cout << info(C).no_id << " " << info(C).nama;
+        cout << info(C).no_id << " " << info(C).nama;cout<<" "<<endl;
         C = next(C);
     }
     cout << endl;

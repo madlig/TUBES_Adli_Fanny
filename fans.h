@@ -13,7 +13,7 @@ using namespace std;
 struct fans{
     int no_id;
     string nama;
-    int cp;
+    string cp;
     string region;
     string gender;
     string pekerjaan;

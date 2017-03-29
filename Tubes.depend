@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1490689587 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\artis.cpp
+1490805520 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\artis.cpp
 	"artis.h"
 
-1490636816 e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\artis.h
+1490795377 e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\artis.h
 	<iostream>
 
-1490671600 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\main.cpp
+1490789936 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\main.cpp
 	<iostream>
 	<conio.h>
 	<windows.h>
@@ -14,21 +14,21 @@
 	"fans.h"
 	"aplikasi.h"
 
-1490691279 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\fans.cpp
+1490804825 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\fans.cpp
 	"fans.h"
 
-1490670110 e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\fans.h
+1490789552 e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\fans.h
 	<iostream>
 
-1490688385 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\relasi.cpp
+1490804909 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\relasi.cpp
 	"relasi.h"
 
-1490709564 e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\relasi.h
+1490797264 e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\relasi.h
 	<iostream>
 	"artis.h"
 	"fans.h"
 
-1490711885 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\aplikasi.cpp
+1490805076 source:e:\telkomuniversity\perkampusan\struktur data\tubes\tubes\aplikasi.cpp
 	"aplikasi.h"
 	<windows.h>
 	<conio.h>

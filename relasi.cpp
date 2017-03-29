@@ -16,8 +16,13 @@ void dealokasi_relasi(address_relasi &R) {
     delete R;
 }
 void insertFirst_relasi(List_relasi &L3, address_relasi R) {
-    next(R) = first(L3);
-    first(L3) = R;
+    if(first(L3) == NULL){
+        first(L3) = R;
+    }
+    else{
+        next(R) = first(L3);
+        first(L3) = R;
+    }
 }
 void insertLast_relasi(List_relasi &L3, address_relasi R) {
     if(first(L3)==NULL) {
@@ -31,9 +36,9 @@ void insertLast_relasi(List_relasi &L3, address_relasi R) {
     }
 }
 address_relasi findElm_relasi(List_relasi L3, address_artis P,address_fans C) {
-    address_relasi R;
+    address_relasi R = first(L3);
 
-    while(P!=NULL) {
+    while(R!=NULL) {
         if(artis_next(R)==P && fans_next(R)==C){
             return R;
         }
@@ -43,7 +48,15 @@ address_relasi findElm_relasi(List_relasi L3, address_artis P,address_fans C) {
     return R;
 }
 void deleteFirst_relasi(List_relasi &L3, address_relasi &R) {
-    if(first(L3)!=NULL) {
+    if(first(L3)== NULL) {
+        cout<<"Elemen Kosong";
+
+    }
+    else if(next(first(L3)) == NULL){
+        R = first(L3);
+        first(L3) = NULL;
+    }
+    else{
         R = first(L3);
         first(L3) = next(R);
         next(R) = NULL;
@@ -66,11 +79,16 @@ void deleteLast_relasi(List_relasi &L3, address_relasi &R) {
 }
 void printInfo_relasi(List_relasi L3) {
     address_relasi R = first(L3);
-    while(R!=NULL) {
-        cout << info(artis_next(R)).nama << " " << info(fans_next(R)).nama;
-        R = next(R);
+    if(first(L3)== NULL){
+        cout<<"Elemen Kosong";
     }
-    cout << endl;
+    else{
+        while(R!=NULL) {
+            cout << info(artis_next(R)).nama << " " << info(fans_next(R)).nama;cout<<" "<<endl;
+            R = next(R);
+        }
+        cout << endl;
+    }
 }
 void insertAfter_relasi(List_relasi &L3, address_relasi Prec, address_relasi R) {
     if(first(L3)!=NULL) {
@@ -122,7 +140,10 @@ void deleteRelasi(List_relasi L3, address_relasi R){
         cout<<"Elemen Kosong";
     }
     else{
+        artis_next(R) = NULL;
+        fans_next(R) = NULL;
         deleteAfter_relasi(L3,Prec,R);
+        dealokasi_relasi(R);
     }
 }
 

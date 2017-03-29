@@ -1,6 +1,5 @@
 #ifndef RELASI_H_INCLUDED
 #define RELASI_H_INCLUDED
-
 #define artis_next(R)  R->artis_next
 #define fans_next(R)  R->fans_next
 #include <iostream>

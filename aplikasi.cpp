@@ -21,6 +21,22 @@ void menu(){
 
     int pilihan;
 
+    A.nama  = "Eman";
+    A.gender = "Pria";
+    A.no_id = 50;
+    A.pekerjaan = "Aktor";
+    A.cp = "08122451677";
+    A.medsos = "@man";
+    insertFirst_artis(L, alokasi_artis(A));
+
+    F.nama  = "Alyssa";
+    F.gender = "Wanita";
+    F.no_id = 30;
+    F.pekerjaan = "Pelajar";
+    F.cp = "08523241389";
+    F.region = "@lysa";
+    insertFirst_fans(L2,alokasi_fans(F));
+
     do{
         system("CLS");
         cout<<"   =========MENU==========   "<<endl<<
@@ -127,7 +143,7 @@ void view_parent(){
                 }
                 else{
                     cout<<"==========Tampilkan Data Artis=========="<<endl;
-                    printInfo_artis(L)<<endl;
+                    printInfo_artis(L);
 }               }
 
 void view_child(){
@@ -137,7 +153,8 @@ void view_child(){
                 }
                 else{
                     cout<<"==========Tampilkan Data Fans=========="<<endl;
-                    printInfo_fans(L2)<<endl;
+                    printInfo_fans(L2);
+                    cout<<endl;
                 }
 }
 
@@ -179,7 +196,7 @@ void search_child(){
 }
 
 void relasikan(){
-                cout<<"==========Hubungan Artis & Fans========="<<endl;
+                cout<<"========== Hubungan Artis & Fans ========="<<endl;
                 cout<<"Masukan nama artis : ";
                 cin>>A.nama;
                 cout<<"Masukan nomer identitas artis : ";
@@ -191,6 +208,7 @@ void relasikan(){
                 cin>>F.no_id;
                 C = findElm_fans(L2,F);
                 if(P != NULL && C != NULL){
+                    cout<<"Data berhasil diinputkan";
                     addRelasi(L3,alokasi_relasi(P,C));
                 }
                 else{
@@ -202,13 +220,8 @@ void relasikan(){
 
 void view_relasi(){
                 system("CLS");
-                if(first(L3)==NULL){
-                    cout<<"Data Kosong";
-                }
-                else{
                     cout<<"==========Daftar Artis & Fans=========="<<endl;
                     printInfo_relasi(L3);
-                }
 }
 
 bool search_relasi(){
@@ -225,15 +238,17 @@ bool search_relasi(){
                 C = findElm_fans(L2,F);
                 R = findElm_relasi(L3,P,C);
                 if(R != NULL){
+                    cout<<"Data saling berhubungan"<<endl;
                     return TRUE;
                 }
                 else{
+                    cout<<"Data tidak saling berhubungan"<<endl;
                     return FALSE;
                 }
 }
 
 void putus_relasi(){
-                cout<<"==========Hapus Hubungan========="<<endl;
+                cout<<"========== Hapus Hubungan ========="<<endl;
                 cout<<"Masukan nama artis : ";
                 cin>>A.nama;
                 cout<<"Masukan nomer identitas artis : ";
@@ -246,13 +261,17 @@ void putus_relasi(){
                 C = findElm_fans(L2,F);
                 R = findElm_relasi(L3,P,C);
                 if(R != NULL){
+                    cout<<"Data berhasil dihapus"<<endl;
                     deleteRelasi(L3,R);
+                }
+                else{
+                    cout<<"Data tidak ditemukan";
                 }
 
 }
 
 void delete_parent(){
-                cout<<"==========Hapus Data Artis=========="<<endl;
+                cout<<"========== Hapus Data Artis =========="<<endl;
                 address_relasi R;
                 address_artis Prec;
                 cout<<"Masukan nama artis : ";
@@ -261,19 +280,22 @@ void delete_parent(){
                 cin>>A.no_id;
                 P = findElm_artis(L,A);
                 if(P != NULL){
-                    while(R != NULL){
+                    /**while(R != NULL){
                         if(artis_next(R) == P){
                             deleteRelasi(L3,R);
                         }
                         R=next(R);
-                    }
+                    }**/
+                    cout<<"berhasil"<<endl;
                     deleteAfter_artis(L,Prec,P);
                 }
+                else
+                    cout<<"Data tidak ditemukan"<<endl;
 
 }
 
 void delete_child(){
-                cout<<"==========Hapus Data Artis=========="<<endl;
+                cout<<"========== Hapus Data Artis =========="<<endl;
                 address_relasi R;
                 address_fans Prec;
                 cout<<"Masukan nama fans : ";
@@ -282,46 +304,50 @@ void delete_child(){
                 cin>>F.no_id;
                 C = findElm_fans(L2,F);
                 if(C != NULL){
-                    while(R != NULL){
+                    /**while(R != NULL){
+                        cout<<"berhasil"<<endl;
                         if(fans_next(R) == C){
+                            cout<<"berhasil"<<endl;
                             deleteRelasi(L3,R);
                         }
                         R=next(R);
-                    }
+                    }**/
                     deleteAfter_fans(L2,Prec,C);
                 }
+                else{
+                    cout<<"Data tidak ditemukan";
+                }
 }
-/**address_relasi findMin(List_relasi &R){
-                address_relasi P = NULL;
-                if(first(R) == NULL){
+/**address_relasi findMin(List_relasi &L3){
+                address_relasi R;
+                if(first(L3) == NULL){
                     cout<<"Data Kosong"<<endl;
+                    R = NULL;
                 }
                 else{
-                    P = first(R);
-                    address_relasi min = P;
-                    while(next(P) != NULL){
-                        P = next(P);
-                        if(info(artis_next(P).no_id )< info(artis_next(min).no_id)){
-                            min = P;
+                    R = first(L3);
+                    address_relasi min = R ;
+                    while(next(R) != NULL){
+                        R = next(R);
+                        if(info(artis_next(R)).no_id < info(artis_next(min)).no_id){
+                            min = R;
                         }
                     }
-                    P = min;
                 }
-                return P;
+                return R;
 }
-void sort_relasi(List_relasi &L3){
-                address_relasi R;
+void sort_relasi(List_relasi &L3, List_relasi L3_hasil ){
+                address_relasi R, R1;
                 address_artis P;
                 address_fans C;
-                List_relasi L3;
-                createList_relasi(R);
-                while(first(R) != NULL){
-                    R = findMin(R);
-                    P = artis_next(P);
-                    C = fans_next(P);
-                    deleteRelasi(L3,R);
+                while(next(R) != NULL){
+                    R1 = findMin(L3);
+                    P = artis_next(R);
+                    C = fans_next(R);
+                    deleteRelasi(L3,R1);
                     A = alokasi_relasi(P,C);
-                    insertLast_relasi(R,A);
+                    insertLast_relasi(L3_hasil,A);
+                    R
                 }
                 R=T;
 }**/
